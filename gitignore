@@ -1,0 +1,46 @@
+########################
+# OS / Editor files
+########################
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+########################
+# Node / JavaScript project
+########################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+########################
+# Environment / secrets
+########################
+.env
+.env.*
+
+########################
+# Logs
+########################
+logs/
+*.log
+
+########################
+# Build / coverage (future-proof)
+########################
+dist/
+build/
+coverage/
+.nyc_output/
+
+########################
+# Misc tool caches
+########################
+.eslintcache
+.turbo/
+.parcel-cache/
+.cache/
