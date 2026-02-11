@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book details</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <a class="brand-link" href="/">
+          <div class="brand-mark">📚</div>
+          <div class="brand-text">
+            <div class="brand-title">Library Store</div>
+            <div class="brand-subtitle">Book details</div>
+          </div>
+        </a>
+      </div>
+      <div id="authStatus">
+        <button id="showAuthBtn" class="btn">Sign in</button>
+        <span id="userInfo" style="display:none;"></span>
+        <button id="logoutBtn" class="btn btn-danger" style="display:none;">Sign out</button>
+      </div>
+    </header>
+
+    <div id="authModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <h2 id="authTitle">Sign in</h2>
+        <form id="authForm">
+          <input type="text" id="username" placeholder="Username" required>
+          <input type="password" id="password" placeholder="Password" required>
+          <select id="roleSelect">
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+          <button type="submit" id="authSubmit" class="btn btn-primary">Sign in</button>
+          <p id="toggleAuthText">No account? Create one</p>
+        </form>
+      </div>
+    </div>
+
+    <main class="details">
+      <a class="back-link" href="/">← Back to books</a>
+
+      <div class="details-card" id="detailsCard">
+        <div class="details-media">
+          <img id="detailsImage" alt="Book cover" />
+        </div>
+        <div class="details-info">
+          <h1 id="detailsName">Loading…</h1>
+          <div class="details-meta">
+            <div class="pill" id="detailsAuthor"></div>
+            <div class="price" id="detailsPrice"></div>
+          </div>
+          <p class="details-description" id="detailsDescription"></p>
+          <div class="admin-actions" id="detailsAdminActions" style="display:none;"></div>
+        </div>
+      </div>
+
+      <section class="section reviews-section">
+        <div class="section-header">
+          <h2>Reviews</h2>
+          <p class="muted" id="reviewsCount"></p>
+        </div>
+
+        <div id="reviewsList" class="reviews-list"></div>
+
+        <div id="reviewFormWrap" class="review-form" style="display:none;">
+          <h3>Leave a review</h3>
+          <div class="review-form-grid">
+            <textarea id="reviewText" rows="4" placeholder="Write your review…"></textarea>
+            <div class="review-form-actions">
+              <select id="reviewRating">
+                <option value="1">Rating: 1</option>
+                <option value="2">Rating: 2</option>
+                <option value="3" selected>Rating: 3</option>
+                <option value="4">Rating: 4</option>
+                <option value="5">Rating: 5</option>
+              </select>
+              <button class="btn btn-primary" id="submitReviewBtn">Submit</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="reviewAuthHint" class="muted" style="display:none;">
+          Sign in to leave a review.
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/book.js"></script>
+</body>
+</html>

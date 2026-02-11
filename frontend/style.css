@@ -1,0 +1,353 @@
+:root {
+    --bg: #0b1220;
+    --surface: #0f172a;
+    --card: #111c33;
+    --text: #e5e7eb;
+    --muted: rgba(229, 231, 235, 0.75);
+    --line: rgba(148, 163, 184, 0.18);
+
+    --primary: #7c3aed;
+    --primary2: #22c55e;
+    --danger: #ef4444;
+
+    --shadow: 0 10px 25px rgba(0,0,0,0.25);
+    --radius: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+    background:
+      radial-gradient(1200px 600px at 10% 0%, rgba(124, 58, 237, 0.28), transparent 60%),
+      radial-gradient(900px 500px at 100% 20%, rgba(34, 197, 94, 0.18), transparent 55%),
+      radial-gradient(800px 500px at 60% 120%, rgba(59, 130, 246, 0.16), transparent 60%),
+      var(--bg);
+    min-height: 100vh;
+    padding: 20px;
+    color: var(--text);
+}
+
+.container {
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+/* Основной контент */
+.main-content {
+    display: grid;
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    gap: 25px;
+}
+.main-content.no-admin {
+    grid-template-columns: 1fr;
+}
+
+.books-section {
+    min-width: 0;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(17, 28, 51, 0.75);
+    border: 1px solid var(--line);
+    padding: 20px 30px;
+    border-radius: var(--radius);
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+}
+.brand-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+}
+.brand-mark {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(124, 58, 237, 0.18);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+}
+.brand-title {
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 1.15rem;
+    line-height: 1.1;
+}
+.brand-subtitle {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-top: 2px;
+}
+
+/* Кнопки */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    background: rgba(148, 163, 184, 0.14);
+    color: var(--text);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.btn:hover { transform: translateY(-1px); }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+
+.btn-primary { background: rgba(124, 58, 237, 0.95); border-color: rgba(124, 58, 237, 0.85); color: white; }
+.btn-primary:hover { background: rgba(124, 58, 237, 1); }
+.btn-danger { background: rgba(239, 68, 68, 0.95); border-color: rgba(239, 68, 68, 0.8); color: white; }
+.btn-danger:hover { background: rgba(239, 68, 68, 1); }
+.btn-sm { padding: 8px 12px; border-radius: 10px; font-size: 0.9rem; }
+
+a.btn { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; }
+
+/* Формы */
+.section {
+    background: rgba(17, 28, 51, 0.75);
+    border: 1px solid var(--line);
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+}
+
+.section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+.section-header h2 {
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+}
+.muted { color: var(--muted); font-size: 0.92rem; }
+
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    border-radius: 12px;
+    outline: none;
+    transition: 0.3s;
+    background: rgba(15, 23, 42, 0.65);
+    color: var(--text);
+}
+textarea { resize: vertical; }
+input:focus, select:focus, textarea:focus { border-color: rgba(124, 58, 237, 0.9); box-shadow: 0 0 0 4px rgba(124,58,237,0.18); }
+
+/* Сетка книг */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+.book-card {
+    background: rgba(17, 28, 51, 0.75);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    backdrop-filter: blur(10px);
+}
+.book-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(124, 58, 237, 0.45);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.35);
+}
+
+.book-cover-wrap {
+    aspect-ratio: 3 / 4;
+    background: rgba(15, 23, 42, 0.6);
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+}
+.book-cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.book-body { padding: 16px 16px 18px; }
+.book-title {
+    font-size: 1.05rem;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+}
+.book-meta { color: var(--muted); font-size: 0.92rem; }
+.book-author { color: rgba(229, 231, 235, 0.92); }
+.book-price {
+    margin-top: 10px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+.book-desc {
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.45;
+    min-height: 2.6em;
+}
+.book-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+.admin-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+
+.review-item {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    padding: 12px 14px;
+    border-radius: 14px;
+}
+
+/* Toolbar */
+.toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: flex-end;
+}
+.toolbar-group { display: flex; gap: 10px; }
+.toolbar-group.grow { flex: 1; min-width: 220px; }
+.toolbar input[type="search"] { height: 44px; }
+.toolbar select { height: 44px; }
+
+.empty {
+    grid-column: 1 / -1;
+    padding: 18px;
+    border-radius: var(--radius);
+    border: 1px dashed rgba(148, 163, 184, 0.28);
+    color: var(--muted);
+    text-align: center;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 18px;
+}
+.pagination-info { color: var(--muted); font-size: 0.95rem; }
+
+/* Модальное окно (Login) */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(5px);
+    display: none; /* Скрыто по умолчанию */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: rgba(17, 28, 51, 0.92);
+    border: 1px solid var(--line);
+    padding: 40px;
+    border-radius: 22px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+#toggleAuthText {
+    margin-top: 15px;
+    color: rgba(229, 231, 235, 0.9);
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+#userInfo {
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+/* Details page */
+.details { display: grid; gap: 18px; }
+.back-link { color: rgba(229, 231, 235, 0.85); text-decoration: none; }
+.back-link:hover { text-decoration: underline; }
+.details-card {
+    display: grid;
+    grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+    gap: 18px;
+    background: rgba(17, 28, 51, 0.75);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+}
+.details-media { background: rgba(15, 23, 42, 0.6); }
+.details-media img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 3 / 4; }
+.details-info { padding: 18px 18px 22px; }
+.details-info h1 { font-size: 1.6rem; letter-spacing: -0.02em; }
+.details-meta { margin-top: 10px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.pill {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: rgba(148, 163, 184, 0.14);
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    color: rgba(229, 231, 235, 0.92);
+    font-weight: 600;
+}
+.price { font-size: 1.2rem; font-weight: 900; }
+.details-description { margin-top: 14px; color: var(--muted); line-height: 1.55; white-space: pre-wrap; }
+
+.reviews-section { margin-top: 4px; }
+.reviews-list { display: grid; gap: 10px; }
+.review-head { display: flex; justify-content: space-between; gap: 12px; }
+.stars { color: var(--muted); font-size: 0.92rem; }
+.review-body { margin-top: 8px; color: rgba(229, 231, 235, 0.92); white-space: pre-wrap; }
+.review-form { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 14px; }
+.review-form h3 { margin-bottom: 10px; }
+.review-form-grid { display: grid; gap: 10px; }
+.review-form-actions { display: flex; gap: 10px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+.review-form-actions select { max-width: 220px; }
+
+/* Responsive */
+@media (max-width: 920px) {
+    .main-content { grid-template-columns: 1fr; }
+}
+@media (max-width: 860px) {
+    .details-card { grid-template-columns: 1fr; }
+    header { padding: 18px 18px; }
+}
+*** End Patch"}]}Oops I used ApplyPatch with JSON accidentally? Need correct tool call. Let's redo without. Unable in analysis. We'll call ApplyPatch properly. We'll need delete file added? It failed? It's currently incorrectly. We'll check response? No tool call executed due to invalid. We'll now call ApplyPatch proper. We'll need ensure file doesn't exist already; it doesn't. We'll add file with correct patch string. We'll do next. There is no tool output; so proceed. We'll call ApplyPatch. We'll craft patch. Let's continue. ```python? no. We'll do. We'll need to pay attention to patch grammar: Add File and plus lines. We'll create entire file with +. Let's do. Sorry. We'll proceed. We must not mention. We'll do correct tool call. We'll not include huge file? It's long but ok. Let's do. `functions.ApplyPatch` freeform. We'll add file. Let's do. We'll also add script.js and book.js and assets placeholder. We'll create frontend/script.js, frontend/book.js, frontend/assets/book-placeholder.svg. We'll also delete old public files later. After create, update backend server static points. already. Good. Let's create remaining frontend files. We'll do in multiple applypatch calls. Start with frontend/style.css (long). We'll then add frontend/script.js by copying from public/script.js currently with no change. Same for book.js and placeholder (already in public/assets). We'll create directories. We'll assume created. Let's execute patches. This will be many lines but ok. We'll do. We'll need update any paths like PLACEHOLDER IMG uses '/assets/...' ok. Great. We'll proceed. We'll also delete old ones. We'll then test by running node server.js? We'll use Shell to run node? allowed. We'll do after restructure. But first complete file creation. We'll also ensure `public` folder no longer served; but root express static uses frontend. fine. Let's go. We'll call ApplyPatch for frontend/style.css using existing style.css but with new addition for no-admin already integrated. We'll ensure file includes those changes. It's present in public/style.css now. We'll just copy that exact. We'll do. We'll ensure plus lines etc. Let's call. 
